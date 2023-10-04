@@ -7,7 +7,7 @@ license = "MIT"
 description = "A decoder/encoder for Ogg Opus for WASM"
 repository = "https://github.com/kujirahand/ogg-opus-wasm"
 
-exclude = ["test_assets/*"] # Don't upload files for testing
+exclude = ["test_assets/*", "*.sh"] # Don't upload files for testing
 
 [lib]
 crate-type = ["cdylib", "rlib"]
