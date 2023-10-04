@@ -1,8 +1,10 @@
 # Ogg Opus
 
-A decoder/encoder for Ogg Opus in [Rust](https://www.rust-lang.org/) for WASM.
+A encoder for Ogg Opus in [Rust](https://www.rust-lang.org/) for WASM.
 
 # WASM Problem ...
+
+We are currently investigating this issue.
 
 ```
 Uncaught TypeError: Failed to resolve module specifier "env". Relative references must start with either "/", "./", or "../".
