@@ -1,13 +1,9 @@
 use std::cmp::min;
-use std::process;
-
 use crate::Error;
 use crate::common::*;
-
 use byteorder::{LittleEndian, ByteOrder};
 use ogg::PacketWriter;
 use audiopus::{Bitrate, coder::{Encoder as OpusEnc, GenericCtl}};
-use rand::Rng;
 
 //--- Final range  things ------------------------------------------------------
 
@@ -35,7 +31,7 @@ pub(crate) fn get_final_range() -> u32 {
 
 //--- Code ---------------------------------------------------------------------
 
-const VER: &str = std::env!("CARGO_PKG_VERSION");
+const ENGINE_NAME: &str = "ogg-opus-wasm";
 
 const fn to_samples<const S_PS: u32>(ms: u32) -> usize {
     ((S_PS * ms) / 1000) as usize
@@ -83,8 +79,9 @@ pub fn encode<const S_PS: u32, const NUM_CHANNELS: u8>(audio: &[i16]) -> Result<
     // Generate the serial which is nothing but a value to identify a stream, we
     // will also use the process id so that two programs don't use 
     // the same serial even if getting one at the same time
-    let mut rnd = rand::thread_rng();
-    let serial = rnd.gen::<u32>() ^ process::id();
+    // let mut rnd = rand::thread_rng();
+    // let serial = rnd.gen::<u32>() ^ process::id();
+    let serial = 12345;
     let mut buffer: Vec<u8> = Vec::new();
     
     let mut packet_writer = PacketWriter::new(&mut buffer);
@@ -162,7 +159,7 @@ pub fn encode<const S_PS: u32, const NUM_CHANNELS: u8>(audio: &[i16]) -> Result<
     LittleEndian::write_u32(&mut head[12..16], S_PS); // Write Samples per second
 
     let mut opus_tags : Vec<u8> = Vec::with_capacity(60);
-    let vendor_str = format!("ogg-opus {}", VER);
+    let vendor_str = format!("ogg-opus {}", ENGINE_NAME);
     opus_tags.extend(b"OpusTags");
     let mut len_bf = [0u8;4];
     LittleEndian::write_u32(&mut len_bf, vendor_str.len() as u32);

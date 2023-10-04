@@ -1,11 +1,11 @@
 [package]
-name = "ogg-opus"
+name = "ogg-opus-wasm"
 version = "0.1.2"
-authors = ["sheosi <sertorbe@gmail.com>"]
+authors = ["kujirahand <web@kujirahand.com>", "sheosi <sertorbe@gmail.com>"]
 edition = "2018"
 license = "MIT"
-description = "A decoder/encoder for Ogg Opus"
-repository = "https://github.com/sheosi/ogg-opus"
+description = "A decoder/encoder for Ogg Opus for WASM"
+repository = "https://github.com/kujirahand/ogg-opus-wasm"
 
 exclude = ["test_assets/*"] # Don't upload files for testing
 
@@ -15,7 +15,7 @@ ogg = "^0.8"
 audiopus = "^0.2" 
 byteorder = "^1.3"
 thiserror = "^1.0"
-rand = "^0.8"
+# rand = "^0.8"
 
 [dev-dependencies]
 wav = "^1.0"

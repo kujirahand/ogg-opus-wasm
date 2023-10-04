@@ -1,5 +1,11 @@
 # Ogg Opus
-A decoder/encoder for Ogg Opus in [Rust](https://www.rust-lang.org/)
+
+A decoder/encoder for Ogg Opus in [Rust](https://www.rust-lang.org/) for WASM.
+
+# Ogg Opus original repository
+
+- https://crates.io/crates/ogg-opus
+- https://github.com/sheosi/ogg-opus
 
 # Usage
 Add to your `cargo.toml`
