@@ -1,12 +1,21 @@
+extern crate wasm_bindgen;
+
 mod common;
-mod decode;
+// mod decode;
 mod encode;
 
 use thiserror::Error;
+use wasm_bindgen::prelude::*;
 
-pub use decode::decode;
-pub use encode::encode;
+// pub use decode::decode as decode_raw;
+pub use encode::encode as encode_raw;
 
+#[wasm_bindgen]
+pub fn encode(audio: &[i16]) -> Vec<u8> {
+    encode_raw::<16000, 2>(audio).unwrap_or(vec![])
+}
+
+/*
 use std::io::{Read, Seek, SeekFrom};
 pub fn is_ogg_opus<T: Read + Seek>(mut d: T) -> bool {
     let mut buff = [0u8; 8];
@@ -20,6 +29,8 @@ pub fn is_ogg_opus<T: Read + Seek>(mut d: T) -> bool {
     // If anything fails
     false
 }
+*/
+
 #[derive(Debug, Error)]
 pub enum Error {
     #[error("Input audio was malformed")]
@@ -49,6 +60,7 @@ mod tests {
             b.try_into_sixteen().unwrap()
         }
 
+        /*
         #[test]
         fn dec_enc_empty() {
             let audio = Vec::new();
@@ -107,4 +119,5 @@ mod tests {
             assert_eq!(enc_fr1, dec_fr1);
             assert_eq!(enc_fr2, dec_fr2);
         }
+    */
 }

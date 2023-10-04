@@ -2,21 +2,27 @@
 
 A decoder/encoder for Ogg Opus in [Rust](https://www.rust-lang.org/) for WASM.
 
-# Ogg Opus original repository
+# WASM Problem ...
+
+```
+Uncaught TypeError: Failed to resolve module specifier "env". Relative references must start with either "/", "./", or "../".
+```
+
+
+## Ogg Opus original repository
 
 - https://crates.io/crates/ogg-opus
 - https://github.com/sheosi/ogg-opus
 
-# Usage
-Add to your `cargo.toml`
+## Usage
 
-```toml
-ogg-opus = "^0.1"
+```sh
+cargo add ogg-opus-wasm
 ```
 
-## Minimum Rust version
-
-Since we use `const generics`, the minimum version of [Rust](https://www.rust-lang.org/) is [1.51](https://blog.rust-lang.org/2021/03/25/Rust-1.51.0.html)
+```sh
+wasm-pack build --target web
+```
 
 # Example
 
